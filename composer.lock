@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e08334651ce0b12e409af9e125ee397d",
+    "content-hash": "d616589c20f5d1a853b8ed37758db279",
     "packages": [
+        {
+            "name": "asmi046/site_skelet",
+            "version": "1.0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asmi046/site_skelet.git",
+                "reference": "80e6e88ceb5e65af5e7f75489051ad336bb25b98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asmi046/site_skelet/zipball/80e6e88ceb5e65af5e7f75489051ad336bb25b98",
+                "reference": "80e6e88ceb5e65af5e7f75489051ad336bb25b98",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Asmi046\\SiteSkelet\\Providers\\SkiletServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Asmi046\\SiteSkelet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "asmi046",
+                    "email": "asmi046@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/asmi046/site_skelet/issues",
+                "source": "https://github.com/asmi046/site_skelet/tree/1.0.33"
+            },
+            "time": "2025-01-30T14:42:09+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",

@@ -1,0 +1,52 @@
+.icon-menu {
+    position: -webkit-sticky;
+    position: sticky;
+    width: 31.8px;
+    height: 23.2px;
+    cursor: pointer;
+    z-index: 5;
+  }
+
+  .icon-menu span {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background-color: $main_color;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+
+  .icon-menu span:first-child {
+    top: 0px;
+  }
+
+  .icon-menu span:last-child {
+    top: auto;
+    bottom: 0px;
+  }
+
+  .show_menue_button.active .icon-menu span,
+  .icon-menu.active span {
+    -ms-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  .show_menue_button.active .icon-menu span:first-child,
+  .icon-menu.active span:first-child {
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 9px;
+  }
+
+  .show_menue_button.active .icon-menu span:last-child,
+  .icon-menu.active span:last-child {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    bottom: 12px;
+  }

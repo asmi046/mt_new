@@ -1,0 +1,136 @@
+.sidebar_schem {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    height: 100vh;
+
+    .sidebar{
+        z-index: 1000;
+        max-width: 370px;
+        min-width: 320px;
+        box-shadow: $box_shadow;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+
+        footer{
+            margin-top: auto;
+            padding: 10px 0 0 0;
+            display: flex;
+            justify-content: space-between;
+            a{
+                padding: 10px 0;
+                display: block;
+            }
+
+
+        }
+
+        nav {
+            padding: 20px 0;
+
+            a{
+                display: block;
+                color: $black_color;
+                margin: 10px 0;
+                padding: 5px 0;
+                border-radius: $border_rad;
+                font-size: 18px;
+            }
+
+            a.active,
+            a:hover {
+                color: $hover_color;
+
+            }
+        }
+
+        .sb_body {
+            padding-left: 60px;
+        }
+
+        header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+
+            h2 {
+                display: none;
+            }
+
+            figure {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .main_page{
+        flex:1;
+        background-color: white;
+        overflow: auto;
+        height: 100vh;
+        .page_container {
+            width:90%;
+            max-width: 1280px;
+            background-color: white;
+            margin: 10px auto;
+        }
+    }
+}
+
+.mobile_menu_btn{
+    display: none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    color: white;
+    right:20px;
+    bottom:80px;
+    background-color: $main_color;
+    border-radius: 60px;
+    font-size: 28px;
+    box-shadow: $box_shadow;
+    z-index: 6000;
+    i{
+        margin: auto;
+    }
+
+    .close{
+        display: none;
+    }
+
+    &.active{
+        .close{
+            display: block;
+        }
+        .open{
+            display: none;
+        }
+    }
+}
+
+
+@media (max-width:1024px) {
+    .mobile_menu_btn{
+        display: flex;
+    }
+
+    .cabinet_section .sidebar {
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 94%;
+        padding-left: 3%;
+        padding-right: 3%;
+        max-width: unset;
+        height: calc(100% - 20px);
+        z-index: 5000;
+
+        &.active {
+            display: flex;
+        }
+    }
+}

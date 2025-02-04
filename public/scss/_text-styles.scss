@@ -1,0 +1,51 @@
+.text_styles {
+
+    p{
+        margin: 20px 0;
+    }
+
+    ul li {
+        margin: 10px 0;
+        position: relative;
+        padding-left: 20px;
+    }
+
+    ol{
+        counter-reset: my-numbers;
+        padding-left: 20px;
+        list-style: none;
+
+        li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        li::before{
+            color: $main_color;
+            font-weight: bold;
+            position: absolute!important;
+            left:-20px;
+            top:0;
+            content: counter(my-numbers);
+            counter-increment: my-numbers;
+        }
+    }
+
+    ul li:before{
+        content:"";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        left: 0;
+        top:7px;
+        border-radius: 2px;
+        background-color: $main_color;
+    }
+}
+
+
+@media (max-width: 320px) {
+    .text_styles {
+        word-break: break-all;
+    }
+}

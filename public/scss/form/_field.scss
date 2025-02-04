@@ -1,0 +1,23 @@
+.field {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+
+    p.error {
+        background-color: red;
+        color: white;
+        display: inline-block;
+        margin: 7px 0;
+        border-radius: $border_rad;
+        padding: 3px 10px;
+    }
+
+    p.success {
+        background-color: green;
+        color: white;
+        display: inline-block;
+        margin: 7px 0;
+        border-radius: $border_rad;
+        padding: 3px 10px;
+    }
+}
