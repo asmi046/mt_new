@@ -3,6 +3,19 @@
     display: flex;
     flex-direction: column;
 
+    sup{
+        color: red;
+    }
+
+    label {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+    select,
+    input {
+        font-size: 12px;
+    }
+
     p.error {
         background-color: red;
         color: white;

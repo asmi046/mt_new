@@ -22,7 +22,11 @@ input{
     border: 1px solid #dbdbdb;
     border-radius: 0.375em;
     color: #353535;
-    height: 2.5em;
+    height: 3em;
+
+    &._error {
+        background-color: rgba(255,0,0,.10);
+    }
 }
 
 input[type=checkbox] {

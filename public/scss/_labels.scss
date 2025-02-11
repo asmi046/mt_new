@@ -1,0 +1,31 @@
+.main_label {
+    background-color: $main_color;
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    border-radius: $border_rad;
+
+    .icon {
+        border-radius: $border_rad;
+        display: flex;
+        width: 37px;
+        height: 37px;
+        background-color: $sub_color;
+    }
+
+    span {
+        font-size: 20px;
+        color: $black_color;
+        display: flex;
+        margin: auto 10px;
+        font-family: 'Play';
+        font-weight: bold;
+    }
+
+    .svg_icon {
+        fill: white;
+        height: 70%;
+        width: 70%;
+        margin: auto;
+    }
+}
