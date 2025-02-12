@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string("name", 500)->default('Созданая оплата')->comment('Наименование заказа');
             $table->string('img')->nullable()->comment('Изображение');
             $table->float('price', 6,2)->comment('Цена');
+            $table->date('start_data')->nullable()->comment('Дата тура, проезда');
+            $table->string('ticket_short_lnk')->nullable()->comment('Короткая ссылка на билеты');
             $table->string('payment_url', 500)->nullable()->comment('Url из банка');
             $table->string('payment_id', 100)->nullable()->comment('Идентификатор платежа из банка');
         });

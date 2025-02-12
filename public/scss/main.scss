@@ -34,7 +34,7 @@ section{
 img {
     width:100%;
     height:100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .map_in_page {
@@ -76,6 +76,7 @@ h2 {
 
 @import "pay";
 @import "labels";
+@import "ticket";
 
 // Схема с сайдбаром
 // @import "sidebar-schem";
