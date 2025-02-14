@@ -43,6 +43,12 @@
                 color:#333333;
             }
 
+            .zig_arrow {
+                width: 70px;
+                transform:  rotate(90deg);
+                margin: 30px;
+            }
+
         </style>
     </head>
     <body style="background-color: #e4efef; padding: 50px 20px;">

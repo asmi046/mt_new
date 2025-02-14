@@ -22,8 +22,8 @@
         </div>
 
         <div class="pd">
-            <span>телефон:</span>
-            <p>{{ $item->phone }}</p>
+            <span>Дата рождения:</span>
+            <p>{{ $item->dr }}</p>
         </div>
     </div>
 </div>
