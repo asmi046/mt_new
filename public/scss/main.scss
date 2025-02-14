@@ -74,6 +74,31 @@ h2 {
     }
 }
 
+.policy_label {
+    font-size: 12px;
+    display: flex;
+
+    input[type=checkbox] {
+        width: 12px;
+        height: 12px;
+        margin: 1px 5px;
+    }
+
+    a {
+        color: $sub_color;
+        font-weight: 500;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.emoji {
+    &.big {
+        font-size: 32px;
+    }
+}
+
 @import "pay";
 @import "labels";
 @import "ticket";

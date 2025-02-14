@@ -6,7 +6,7 @@ use App\Events\PayOrderConfirmed;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class PayOrderConfirmedSmsSendNotification
+class PayOrderConfirmedSmsSendNotification implements ShouldQueue
 {
 
     /**

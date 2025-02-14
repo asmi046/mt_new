@@ -48,3 +48,19 @@
         margin-top: 0;
     }
 }
+
+@media (max-width: 768px) {
+    .pay_box_wrapper {
+        width:94%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pay_box {
+        flex-direction: column;
+
+        .img_wrapper {
+            width: 100%;
+        }
+    }
+}

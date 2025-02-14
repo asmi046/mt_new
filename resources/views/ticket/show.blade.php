@@ -17,12 +17,17 @@
                     Ваши чеки
             @endswitch
         </h1>
-        <div class="tickets_wrapper">
-            @foreach ($pay->clients as $item)
-                <x-tickets.exkurs :title="$pay->name" :item="$item"></x-tickets.exkurs>
-            @endforeach
 
-        </div>
+        @if ($pay->status === "Проведен")
+            <div class="tickets_wrapper">
+                @foreach ($pay->clients as $item)
+                    <x-tickets.exkurs :title="$pay->name" :item="$item"></x-tickets.exkurs>
+                @endforeach
+            </div>
+        @else
+            <h3>К сожалению Ваши билиты в стадии офомления <br><span class="emoji big">🐢⏳</span></h3>
+        @endif
+
 
     </div>
 </section>

@@ -5,6 +5,10 @@
         margin-bottom: 50px;
         text-align: center;
     }
+
+    h3 {
+        text-align: center;
+    }
 }
 
 .tickets_wrapper {
@@ -65,4 +69,35 @@
         }
     }
 
+}
+
+
+@media (max-width: 512px) {
+    .ticket {
+        .person_data {
+            font-size: 14px;
+            header {
+                margin-bottom: 10px;
+            }
+
+            .pd {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .ticket {
+        .person_data {
+            font-size: 12px;
+            header {
+                margin-bottom: 5px;
+            }
+
+            .pd {
+                margin-bottom: 5px;
+            }
+        }
+    }
 }

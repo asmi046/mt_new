@@ -76,6 +76,11 @@
                 </div>
         </div>
 
+        <label for="f_policy" class="policy_label">
+            <input required checked type="checkbox" name="policy" id="f_policy" class="_req">
+            <span>Я даю свое <a href="https://www.mirturizma46.ru/soglasie-na-obrabotku-personalnyx-dannyx/">согласие на обработку персональных данных</a> а так же соглашаюсь с <a href="https://www.mirturizma46.ru/politika-v-oblasti-obrabotki-personalnyx-dannyx-polzovatelej/">политикой конфиденциальности</a></span>
+        </label>
+        <br>
         <button @click.prevent="to_pay_lnk">Оплатить</button>
 
     </form>
