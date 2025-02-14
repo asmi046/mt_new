@@ -16,8 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('pay_order_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string("fio")->comment('ФИО клиента');
-            $table->string("phone")->comment('Телефон');
-            $table->string("email")->nullable()->comment('email');
+            $table->date('dr')->comment('Дата рождения');
             $table->string("document_type")->comment('Тип документа');
             $table->string("document_number")->comment('Номер документа');
         });

@@ -58,6 +58,9 @@ class PayOrderRequest extends FormRequest
             "type" => [],
             "status"  => [],
             "img" => [],
+            "phone" => [],
+            "email" => [],
+            "start_data" => [],
         ];
     }
 }

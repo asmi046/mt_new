@@ -26,18 +26,13 @@
         </div>
     </div>
 
-    <div class="box client_box">
-        <h2>Клиент</h2>
-        <form class="client_form" action="">
-            <div class="field">
-                <label for="c_fio">ФИО клиента<sup>*</sup></label>
-                <input v-model="client_data.fio" :class="{_error: client_error_field.fio}" id="c_fio" type="text" placeholder="Иванов Иван Иванович">
-            </div>
-
+    <form class="client_form" action="">
+        <div class="box client_box">
+            <h2>Контакты</h2>
 
             <div class="field">
                 <label for="c_phone">Телефон<sup>*</sup></label>
-                <input v-model="client_data.phone" :class="{_error: client_error_field.phone}" type="c_phone" v-mask="{mask: '+7 (NNN) NNN-NN-NN', model: 'cpf' }" placeholder="+7(___)___-__-__">
+                <input v-model="client_data.phone" name="phone" :class="{_error: client_error_field.phone}" type="c_phone" v-mask="{mask: 'N (NNN) NNN-NN-NN', model: 'cpf' }" placeholder="_(___)___-__-__">
             </div>
 
 
@@ -45,30 +40,45 @@
                 <label for="c_email">E-mail</label>
                 <input v-model="client_data.email" id="c_email" type="mail" placeholder="info@mail.ru">
             </div>
+        </div>
+
+        <div class="box client_box">
+            <h2>Данные пассажира</h2>
+
+                <div class="field">
+                    <label for="c_fio">ФИО клиента<sup>*</sup></label>
+                    <input v-model="client_data.fio" name="name" :class="{_error: client_error_field.fio}" id="c_fio" type="text" placeholder="Иванов Иван Иванович">
+                </div>
+
+                <div class="field">
+                    <label for="c_dr">Дата рождения<sup>*</sup></label>
+                    <input v-model="client_data.dr" :class="{_error: client_error_field.dr}" id="c_dr" type="text" placeholder="__.__.____">
+                </div>
 
 
-            <div class="field">
-                <label for="c_type">Тип документа<sup>*</sup></label>
-                <select  v-model="client_data.document_type" id="c_type">
-                    <option value="Паспорт">Паспорт</option>
-                    <option value="Свидетельство о рождении">Свидетельство о рождении</option>
-                </select>
-            </div>
+                <div class="field">
+                    <label for="c_type">Тип документа<sup>*</sup></label>
+                    <select  v-model="client_data.document_type" id="c_type">
+                        <option value="Паспорт">Паспорт</option>
+                        <option value="Свидетельство о рождении">Свидетельство о рождении</option>
+                    </select>
+                </div>
 
 
-            <div v-if="client_data.document_type == 'Паспорт'" class="field">
-                <label for="c_number">Серия и № паспорта<sup>*</sup></label>
-                <input  v-model="client_data.document_number" :class="{_error: client_error_field.number}" id="c_number" type="text" v-mask="{mask: 'NNNN NNNNNN', model: 'cpf' }" placeholder="____ ______">
-            </div>
+                <div v-if="client_data.document_type == 'Паспорт'" class="field">
+                    <label for="c_number">Серия и № паспорта<sup>*</sup></label>
+                    <input  v-model="client_data.document_number" :class="{_error: client_error_field.number}" id="c_number" type="text" v-mask="{mask: 'NNNN NNNNNN', model: 'cpf' }" placeholder="____ ______">
+                </div>
 
-            <div v-else class="field">
-                <label for="c_number">№ свидетельства<sup>*</sup></label>
-                <input  v-model="client_data.document_number" :class="{_error: client_error_field.number}" id="c_number" type="text" placeholder="__-__№______">
-            </div>
+                <div v-else class="field">
+                    <label for="c_number">№ свидетельства<sup>*</sup></label>
+                    <input  v-model="client_data.document_number" :class="{_error: client_error_field.number}" id="c_number" type="text" placeholder="__-__№______">
+                </div>
+        </div>
 
-            <button @click.prevent="to_pay_lnk">Оплатить</button>
-        </form>
-    </div>
+        <button @click.prevent="to_pay_lnk">Оплатить</button>
+
+    </form>
 </div>
 
 </template>
@@ -90,6 +100,7 @@
         fio: '',
         phone: '',
         email: '',
+        dr: '',
         document_type: 'Паспорт',
         document_number: ''
     })
@@ -97,6 +108,7 @@
     let client_error_field = reactive({
         fio: false,
         phone: false,
+        dr: false,
         document_number: false
     })
 
@@ -149,11 +161,12 @@
         await axios.get('/pay/get_pay_lnk', {
             params: {
                 uuid: props.uuid,
+                phone: client_data.phone,
+                email: client_data.email,
                 clients : [
                     {
                         fio: client_data.fio,
-                        phone: client_data.phone,
-                        email: client_data.email,
+                        dr: client_data.dr,
                         document_type: client_data.document_type,
                         document_number: client_data.document_number
                     },
@@ -164,7 +177,6 @@
         .then((response) => {
             console.log(response.data)
             document.location.href = response.data.payment_url
-            loader.value = false
         })
         .catch( (error) => {
             console.log(error)

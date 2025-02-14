@@ -26,8 +26,10 @@ class ClientOrderRequest extends FormRequest
      {
          return [
              'uuid.required' => 'Платеж неопределен',
-             'clients.*.fio.required' => 'Поле "Имя" должно быть заполнено',
-             'clients.*.phone.required' => 'Поле "Телефон" должно быть заполнено',
+             'phone.required' => 'Поле "Телефон" должно быть заполнено',
+             'email.required' => 'Поле "e-mail" должно быть заполнено',
+             'clients.*.fio.required' => 'Поле "ФИО" должно быть заполнено',
+             'clients.*.dr.required' => 'Поле "Дата рождения" должно быть заполнено',
              'clients.*.document_type.required' => 'Поле "Тип документа" должно быть заполнено',
              'clients.*.document_number.required' => 'Поле "Номер документа" должно быть заполнено',
          ];
@@ -53,9 +55,10 @@ class ClientOrderRequest extends FormRequest
     {
         return [
             "uuid" => "required|string",
-            "clients.*.fio" => "required|string",
-            "clients.*.phone"  => "required|string",
-            "clients.*.email" => [],
+            "phone" => "required|string",
+            "email" => "required|string",
+            "clients.*.fio"  => "required|string",
+            "clients.*.dr"  => "required|string",
             "clients.*.document_type" => "required|string",
             "clients.*.document_number" => "required|string",
         ];

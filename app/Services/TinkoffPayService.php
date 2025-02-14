@@ -9,13 +9,12 @@ class TinkoffPayService {
     protected $notification_url;
     protected $success_url;
     protected $fail_url;
-    protected $test_proxy = "https://9195-91-218-141-117.ngrok-free.app";
 
     public function __construct()
     {
-        $this->notification_url = (config('app.env') === "local")?$this->test_proxy."/pay/notification":route('pay.notification');
-        $this->success_url = (config('app.env') === "local")?$this->test_proxy."/pay/success":route('pay.success');
-        $this->fail_url = (config('app.env') === "local")?$this->test_proxy."/pay/fail":route('pay.fail');
+        $this->notification_url = (config('app.env') === "local")?config('proxy.test_proxy')."/pay/notification":route('pay.notification');
+        $this->success_url = (config('app.env') === "local")?config('proxy.test_proxy')."/pay/success":route('pay.success');
+        $this->fail_url = (config('app.env') === "local")?config('proxy.test_proxy')."/pay/fail":route('pay.fail');
     }
 
     public function gey_payment_link(int $summ, string $order_id, ) {

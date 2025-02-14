@@ -16,6 +16,10 @@ return new class extends Migration
             $table->timestamps();
             $table->uuid('uuid')->unicue()->comment('Идентификаток платежного заказа');
             $table->integer('client_count')->default(1)->comment('Количество клиентов');
+
+            $table->string("phone")->nullable()->comment('Телефон');
+            $table->string("email")->nullable()->comment('email');
+
             $table->string("type")->default('free')->comment('Тип заказа');
             $table->string("status", 50)->default('Создан')->comment('Статус заказа');
             $table->string("name", 500)->default('Созданая оплата')->comment('Наименование заказа');

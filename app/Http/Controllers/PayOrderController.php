@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\PayOrder;
 use Illuminate\Support\Str;
+use App\Services\VkServices;
 use Illuminate\Http\Request;
+use App\Events\PayOrderRegister;
 use App\Services\ClientServices;
+use App\Events\PayOrderConfirmed;
 use App\Services\TinkoffPayService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\PayOrderRequest;
 use App\Http\Requests\ClientOrderRequest;
-use App\Jobs\PayOrderRegisterTelegramSendJob;
 
 class PayOrderController extends Controller
 {
@@ -38,7 +40,7 @@ class PayOrderController extends Controller
         return $pay;
     }
 
-    public function get_pay_lnk(ClientOrderRequest $request, ClientServices $clientServices, TinkoffPayService $tpc) {
+    public function get_pay_lnk(ClientOrderRequest $request, ClientServices $clientServices, TinkoffPayService $tpc, VkServices $vkService) {
         $data = $request->validated();
         $pay = PayOrder::where('status', 'Создан')->where('uuid', $data['uuid'])->first();
         if (!$pay) abort(419, 'Платеж не найден');
@@ -46,12 +48,16 @@ class PayOrderController extends Controller
         $clientServices->sync_pay_order_clients($pay, $data['clients']);
         $tp = $tpc->gey_payment_link($pay->price, $pay->uuid);
 
+        $pay->ticket_short_lnk = $vkService->get_short_lnk($pay);
+        $pay->phone = $data['phone'];
+        $pay->email = isset($data['email'])?$data['email']:null;
         $pay->payment_url = $tp['PaymentURL'];
         $pay->payment_id = $tp['PaymentId'];
         $pay->status = "Зарегистрирован";
         $pay->save();
 
-        dispatch(new PayOrderRegisterTelegramSendJob($pay));
+        event(new PayOrderRegister($pay));
+
         return [
             'payment_url' => $tp['PaymentURL']
         ];
@@ -81,12 +87,13 @@ class PayOrderController extends Controller
 
             if ($state === "AUTHORIZED") {
                 $pay->status = "Авторизован";
-                Log::alert("pay CONFIRMED");
+                Log::alert("pay AUTHORIZED");
             }
 
             if ($state === "CONFIRMED") {
                 $pay->status = "Проведен";
-                Log::alert("pay AUTHORIZED");
+                Log::alert("pay CONFIRMED");
+                event(new PayOrderConfirmed($pay));
             }
 
             if ($state === "REJECTED") {
