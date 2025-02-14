@@ -65,7 +65,9 @@ class PayOrderController extends Controller
 
 
     public function success(Request $request) {
-        return view('pay.success');
+        $uuid = $request->input('uuid');
+        $pay = PayOrder::where('uuid', $uuid)->first();
+        return view('pay.success', ['pay' => $pay]);
     }
 
     public function fail(Request $request) {
